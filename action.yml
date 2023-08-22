@@ -24,6 +24,9 @@ inputs:
   gcp_service_account_key:
     description: "Key of service account"
     required: false
+  action_ref:
+    description: "Ref of the current action - used to get the correct exe version"
+    required: true
 runs:
   using: "composite"
   steps:
@@ -32,6 +35,7 @@ runs:
       with:
         repository: jlieow/action_terraformx_rebuild
         path: action_terraformx_rebuild
+        ref: ${{ inputs.action_ref }}
 
     - name: Export Terraform Environmental Variables
       run: |
